@@ -1,0 +1,23 @@
+[package]
+name = "project"
+version = "0.1.0"
+authors = ["You <email@domain.com>"]
+edition = "2021"
+
+[dependencies]
+libc = { version = "0.2", default-features = false }
+
+[profile.release]
+strip = true        # Automatically strip symbols from the binary.
+opt-level = 'z'     # Optimize for size.
+lto = true          # Enable Link Time Optimization
+codegen-units = 1   # Reduce number of codegen units to increase optimizations.
+panic = 'abort'     # Abort on panic
+
+[build]
+target = "project"
+
+[[bin]]
+name = "project"
+test = false
+bench = false
